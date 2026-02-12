@@ -1,0 +1,145 @@
+.product-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product{
+    display: flex;
+    padding: 0 10vi;
+    padding-top: 2vi;
+    gap: 2rem;
+}
+
+.product img{
+    height: 40vmax;
+    width: 35vmax;
+}
+
+.product-details{
+    height: 36vmax;
+    width: 30vmax;
+    /* border: 0.5px solid grey; */
+    padding: 2vmax;
+}
+
+.product-details-heading{
+    width: 8vmax;
+    border-bottom: 0.5px solid grey;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.product-details-location{
+    color: rgb(68, 68, 68);
+    font-weight: 600;
+}
+
+.product-details-user{
+    color: rgb(68, 68, 68);
+    font-weight: 600;
+}
+
+.product-details-author-name{
+    border: none;
+    color: #5c5c84;
+    outline: none;
+    border-bottom: none;
+}
+
+.product-details-desc{
+    color: rgb(68, 68, 68);
+    font-weight: 600;
+}
+
+.product-details>p>span:last-child{
+    color: #5c5c84;
+}
+
+.product-details>button{
+    width: 5vmax;
+    height: 3vmax;
+    background-color: tomato;
+    border: 0.5px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+
+
+/* Review section start */
+
+.product-reviews{
+    height: auto;
+    width: 72vmax;
+    /* background-color: blueviolet; */
+    margin-top: 3vmax;
+}
+
+.product-reviews-headings{
+    width: 11vmax;
+    text-align: center;
+    border-bottom: 0.5px solid grey;
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.product-reviews-list{
+    height: auto;
+    width: 40vmax;
+    display: flex;
+    border: 0.5px solid grey;
+    padding: 1vmax;
+    gap: 1vmax;
+    margin-top: 2vmax;
+}
+
+.product-reviews-list img{
+    height: 6vmax;
+    width: 6vmax;
+    border-radius: 50%;
+}
+
+.product-reviews-content p{
+    margin: 0px 0px;
+}
+
+.product-reviews-username{
+    font-weight: 600;
+    color: #272727;
+}
+
+.product-reviews-disc{
+    color: #5c5c84;
+    font-size: 1.2vmax;
+}
+
+.no-reviews-section{
+    height: 25vmin;
+}
+
+.no-reviews-section-icon{
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 5vmax;
+    color: tomato;
+}
+
+.no-reviews-section-content{
+    margin-top: 0px;
+    text-align: center;
+    font-size: 1.5vmax;
+    font-weight: 600;
+    color: #5c5c84;
+}

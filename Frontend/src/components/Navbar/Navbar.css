@@ -1,0 +1,36 @@
+.navbar{
+    height: 9vh;
+    width: 97.2vw;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    box-shadow: 1px 1px 1px 1px #dad8d4;
+    border-radius: 2px;
+}
+
+.navbar-icon{
+    height: 4rem;
+    width: 4rem;
+}
+
+.profile-icon{
+    height: 3rem;
+    width: 3rem;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.navbar-content{
+    color: #5c5c84;
+}
+
+.navbar-content p{
+    cursor: pointer;
+}

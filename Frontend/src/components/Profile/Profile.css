@@ -1,0 +1,89 @@
+.profile{
+    height: 85vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    background-color: #FAF7F2;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.profile-left{
+    height: 70vh;
+    width: 18vw;
+    border: 1px solid #969696;
+    padding: 1.5rem;
+    border-radius: 3px;
+}
+
+.profile-heading{
+    border-bottom: 0.2px solid #dcdcdc;
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+}
+
+.profile-left p{
+    height: 1.3rem;
+    padding: 0.5rem;
+    border: 0.2px solid #c6c3c3;
+    text-align: center;
+    border-radius: 3px;
+    color: #454545;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.profile-left p:hover{
+    background-color: #bdbdbd;
+}
+
+.profile-right{
+    height: 70vh;
+    width: 36vw;
+    padding: 1.5rem;
+    border: 1px solid #969696;
+    border-radius: 3px;
+}
+
+.profile-right img{
+    height: 16vh;
+    width: 8vw;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    border-radius: 50%;
+    margin-bottom: 3vh;
+}
+
+.profile-right input{
+    width: 97%;
+    height: 6%;
+    padding: 0.4vh;
+    outline: none;
+    margin-bottom: 3vh;
+}
+
+.profile-right label{
+    height: 6vh;
+    width: 100%;
+    color: #454545;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+}
+
+.profile-right button{
+    height: 5.5vh;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: tomato;
+    border: none;
+    border-radius: 3px;
+    color: #383636;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 0 auto;
+}
+
+.profile-right button:hover{
+    color: #d4d2d2;
+}

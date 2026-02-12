@@ -1,0 +1,10 @@
+.search-bar input{
+    width: 35vmax;
+    height: 0vmax;
+    padding: 2vi;
+    margin-top: -0.5rem;
+    border-radius: 10rem;
+    border: 1px solid grey;
+    outline: none;
+    text-align: center;
+}

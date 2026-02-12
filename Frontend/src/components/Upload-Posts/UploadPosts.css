@@ -1,0 +1,60 @@
+.upload-posts{
+    padding: 2vmax;
+    width: 30vmax;
+    height: 30vmax;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.5px solid gray;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 1vmax;
+    gap: 1vmax;
+
+}
+
+.post-image{
+    height: 15vmax;
+    width: 15vmax;
+    border-radius: 50%;
+}
+
+input[type="file"]::file-selector-button {
+    height: 3vmax;
+    width: 100%;
+    background-color: #696969;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.post-location{
+    height: 1vmax;
+    width: 85%;
+    padding: 10px 20px;
+    border: 0.5px solid grey;
+    border-radius: 5px;
+    outline: none;
+    color: #2c2c2c;
+}
+
+.upload-posts textarea{
+    outline: none;
+    border-radius: 5px;
+    padding: 1vmax;
+    color: #2c2c2c;
+    font-size: 14px;
+}
+
+.upload-posts button{
+    width: 40%;
+    padding: 0.5rem;
+    color: #292929;
+    background-color: tomato;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
