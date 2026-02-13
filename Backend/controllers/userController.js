@@ -1,6 +1,6 @@
 const jwt=require('jsonwebtoken');
 const bcrypt=require('bcrypt');
-const { createUserService, findAuthorService } = require("../services/userService");
+const { createUserService, findAuthorService, deleteUserService } = require("../services/userService");
 
 // user creation
 async function createUserController(req,res){
@@ -188,4 +188,23 @@ async function findAuthorController(req,res){
     }
 }
 
-module.exports={createUserController,loginUserController,logoutUserController,fetchUserDetails,changePassword,findAuthorController};
+// delete the logged in user 
+async function deleteUserController(req,res){
+    try {
+        const userId=res.user._id;
+        await deleteUserService(userId);
+
+        res.status(200).json({
+            status:true,
+            message:"successfully delete the user",
+        });
+    } catch (error) {
+        res.status(400).json({
+            status:false,
+            message:"error comes while deleting the user",
+            error:error.message
+        });
+    }
+}
+
+module.exports={createUserController,loginUserController,logoutUserController,fetchUserDetails,changePassword,findAuthorController,deleteUserController};

@@ -2,6 +2,9 @@ import { useContext, useState } from 'react';
 import './Login.css';
 import {Link, useNavigate} from 'react-router-dom';
 import { userContext } from '../../stores/userStore';
+import { LoginSchema } from '../../validators/SignupValidator';
+import { toast } from 'react-toastify';
+
 
 function Login(){
     const navigate=useNavigate();
@@ -13,18 +16,23 @@ function Login(){
     async function handleSubmit(){
         try {
             const userDetail={email,password};
+
+            // check the validation
+            await LoginSchema.validate(userDetail);
+
             await loginUser(userDetail);
+            
             setEmail("");
             setPassword("");
             navigate("/")
         } catch (error) {
-            console.log("error comes during login: ",error.message);
+            toast.warning(error.message);
         }
     }
 
     return(
         <div className='login'>
-            <img src='./login img.jpg'/>
+            {/* <img src='./login img.jpg'/> */}
             
             <div className='login-form'>
                 <p className='login-heading' align='center'>Login</p> <br/>
@@ -45,7 +53,7 @@ function Login(){
 
 
                 <div className='login-btn'>
-                    <Link to='/signup'>New User</Link>
+                    <Link to='/signup' className='login-btn-link'>New User</Link>
                     {/* <button onClick={()=>navigate('/signup')}>Signup</button> */}
                     <button onClick={handleSubmit}>Login</button>
                 </div>

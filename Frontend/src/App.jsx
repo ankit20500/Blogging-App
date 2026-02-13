@@ -15,6 +15,7 @@ import ChangePassword from './components/ChangePassword/ChangePassword';
 import UserAllPosts from './components/Specific-User-posts/UserAllPosts';
 import UpdatePost from './components/UpdatePost/UpdatePost';
 import HomeCart from './components/Home/HomeCart';
+  import { ToastContainer} from 'react-toastify';
 
 function App(){
   return(
@@ -40,6 +41,16 @@ function App(){
       <Footer/>
       </UserContextProvider>
       </PostContextProvider>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        closeOnClick={true}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+        theme="light"
+        />
       </BrowserRouter>
     </div>
   )

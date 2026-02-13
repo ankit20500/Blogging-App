@@ -6,18 +6,19 @@ import { useNavigate } from 'react-router-dom';
 
 function Profile(){
     const navigate=useNavigate();
-    const {user,logoutUser,loading}=useContext(userContext);
+    const {user,logoutUser,loading,deleteUser}=useContext(userContext);
 
     if(loading) return <p>Loading...</p>;
 
     if(!user) return navigate('/login');
 
     // delete profile
-    function handleDelete(){
+    async function handleDelete(){
         try {
-            console.log("delete button clicked");
+            await deleteUser();
+            navigate('/');
         } catch (error) {
-            console.log("error comes: ",error.message);
+            console.log("error comes",error.message);
         }
     }
 

@@ -39,4 +39,14 @@ async function findAuthorService(id){
     }
 }
 
-module.exports={createUserService,findUserService,findAuthorService};
+// delete the logged in user
+async function deleteUserService(id){
+    try {
+        await User.findByIdAndDelete(id);
+        return;
+    } catch (error) {
+        
+    }
+}
+
+module.exports={createUserService,findUserService,findAuthorService,deleteUserService};

@@ -12,6 +12,10 @@
     align-items: center;
     gap: 10px;
     background-color: #FAF7F2;
+    background-image: url('./login img.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .signup-form{
@@ -30,7 +34,7 @@
 }
 
 .signup-form label{
-    color: #646464;
+    color: #1e1e1e;
     font-weight: 600;
 }
 
@@ -38,7 +42,7 @@
     font-weight: 600;
     font-size: 1.5rem;
     margin: 0 0;
-    color: rgb(24, 201, 65);
+    color: rgb(21, 210, 65);
     border-bottom: 1px solid #bbb9b9e1;
 }
 
@@ -61,4 +65,8 @@
 
 .signup-btn button:hover{
     color: #d4d2d2;
+}
+
+.signup-btn-link{
+    color: #0f8fff;
 }

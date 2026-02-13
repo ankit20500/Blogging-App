@@ -11,6 +11,10 @@
     align-items: center;
     gap: 10px;
     background-color: #FAF7F2;
+    background-image: url('./login img.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .login-form{
@@ -29,7 +33,7 @@
 }
 
 .login-form label{
-    color: #646464;
+    color: #272727;
     font-weight: 600;
 }
 
@@ -62,4 +66,8 @@
 
 .login-btn button:hover{
     color: #d4d2d2;
+}
+
+.login-btn-link{
+    color: #0f8fff;
 }

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useState } from "react";
+import { toast } from 'react-toastify';
 
 export const postContext=createContext();
 
@@ -13,10 +14,11 @@ export const PostContextProvider=({children})=>{
     // function for creating the post
     async function createPost(postData){
         try {
-            await axios.post("http://localhost:3000/api/v1/post/create",postData,{withCredentials:true});
-            
+            const response=await axios.post("http://localhost:3000/api/v1/post/create",postData,{withCredentials:true});
+            toast.success(response.data.message)
             return;
         } catch (error) {
+            toast.error(error.response.data.message);
             console.log("error comes while creating the post",error);
         }
     }
@@ -57,11 +59,13 @@ export const PostContextProvider=({children})=>{
     // delete any specific post by logged in user
     async function deleteUserPost(id){
         try {
-            await axios.delete(`http://localhost:3000/api/v1/post/${id}`,{
+            const response=await axios.delete(`http://localhost:3000/api/v1/post/${id}`,{
                 withCredentials:true
             })
+            toast.success(response.data.message);
             return;
         } catch (error) {
+            toast.error(error.response.data.message);
             console.log("error comes while deleting the post in backend",error);
         }
     }
@@ -74,9 +78,10 @@ export const PostContextProvider=({children})=>{
                 postData,
                 { withCredentials: true }
             );
+            toast.success(response.data.message);
             return response;
         }catch(error) {
-            console.log("error updating post", error);
+            toast.error(error.response.data.message);
             throw error;
         }
     }
