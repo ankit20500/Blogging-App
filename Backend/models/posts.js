@@ -5,6 +5,10 @@ const PostSchema=new mongoose.Schema({
         type:String,
         required:[true,'image is required']
     },
+    publicImgId:{
+        type:String,
+        required:[true,'public id of image is required']
+    },
     location:{
         type:String,
         required:[true,'location is required']

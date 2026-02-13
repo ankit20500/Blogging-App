@@ -7,6 +7,7 @@ export const PostContextProvider=({children})=>{
 
     const [post,setPost]=useState([]);
     const [postDetails,setPostDetails]=useState(null);
+    const [userPosts,setUserPosts] = useState([]);
     
     
     // function for creating the post
@@ -35,7 +36,7 @@ export const PostContextProvider=({children})=>{
     async function fetchAllUserPosts(){
         try {
             const response=await axios.get("http://localhost:3000/api/v1/post/posts",{withCredentials:true});
-            return response;
+            setUserPosts(response.data.data);
         } catch (error) {
             console.log("error comes while fetching the posts of a user from backend",error);
         }
@@ -45,7 +46,7 @@ export const PostContextProvider=({children})=>{
     async function getPostDetails(id){
         try {
             const response=await axios.get(`http://localhost:3000/api/v1/post/${id}`)
-            console.log("author: ",response.data.data);
+            
             setPostDetails(response.data.data);
             return;
         } catch (error) {
@@ -53,8 +54,36 @@ export const PostContextProvider=({children})=>{
         }
     }
 
+    // delete any specific post by logged in user
+    async function deleteUserPost(id){
+        try {
+            await axios.delete(`http://localhost:3000/api/v1/post/${id}`,{
+                withCredentials:true
+            })
+            return;
+        } catch (error) {
+            console.log("error comes while deleting the post in backend",error);
+        }
+    }
+
+    // update the post of logged in user
+    async function updatePost(id, postData){
+        try{
+            const response=await axios.put(
+                `http://localhost:3000/api/v1/post/${id}`,
+                postData,
+                { withCredentials: true }
+            );
+            return response;
+        }catch(error) {
+            console.log("error updating post", error);
+            throw error;
+        }
+    }
+
+
     return(
-        <postContext.Provider value={{fetchAllPosts,post,setPost,fetchAllUserPosts,createPost,getPostDetails,postDetails}}>
+        <postContext.Provider value={{fetchAllPosts,post,setPost,fetchAllUserPosts,createPost,getPostDetails,postDetails,setPostDetails,deleteUserPost,updatePost,userPosts,setUserPosts}}>
             {children}
         </postContext.Provider>
     )

@@ -12,8 +12,15 @@ function Navbar(){
             <img className='navbar-icon' src='../header-icon.png'/>
             <div className='navbar-content'>
                 <p onClick={()=>navigate('/')}>Home</p>
+                {user?<p onClick={()=>navigate('upload-posts')}>Upload Post</p>:""}
+                {user?<p onClick={()=>navigate('/admin/all-posts')}>Your All Posts</p>:""}
+                <p>Contact Us</p>
             </div>
-            <img onClick={()=>user?navigate('/profile'):navigate('/login')} className='profile-icon' src='../profile-icon.avif'/>
+            
+            {user?
+                <img className='profile-icon' src='../profile-icon.avif' onClick={()=>navigate('/profile')}/>
+                :
+                <button className='profile-login-btn' onClick={()=>navigate('/login')}>Login</button>}
         </div>
     )
 }

@@ -5,6 +5,7 @@ async function createPostService(postDetail){
     try {
         const response=await Posts.create({
             image:postDetail.image,
+            publicImgId:postDetail.publicImgId,
             location:postDetail.location,
             author:postDetail.author,
             description:postDetail.description
@@ -46,4 +47,14 @@ async function getPostDetailsService(id){
     }
 }
 
-module.exports={createPostService,getAllPostsService,getAllUserPostService,getPostDetailsService};
+// delete the post which is user want
+async function deletePostService(id){
+    try {
+        const response=await Posts.findByIdAndDelete(id);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
+module.exports={createPostService,getAllPostsService,getAllUserPostService,getPostDetailsService,deletePostService};

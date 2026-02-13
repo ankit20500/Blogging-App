@@ -1,8 +1,8 @@
 import './Signup.css';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { userContext } from '../../stores/userStore';
-// import SignupSchema from '../../validators/SignupValidator';
+import SignupSchema from '../../validators/SignupValidator';
 // import Alert from '@mui/material/Alert';
 
 function Signup(){
@@ -18,10 +18,11 @@ function Signup(){
     async function handleSubmit(){
         try {
             const obj={name,email,password,phone};
-            // const corrects=await SignupSchema(obj);
-            // if(!corrects){
-            //     console.log("")
-            // }
+            const corrects=await SignupSchema.validate(obj);
+            if(!corrects){
+                console.log("wrong type")
+            }
+            else console.log("correct type");
             await registerUser(obj);
             setName("");
             setEmail("");
@@ -43,7 +44,7 @@ function Signup(){
                 <label htmlFor='fullname'>Full Name</label><br/>
                 <input type='text' placeholder='John Doe' 
                         id='fullname' name='fullname'
-                        required="true"
+                        required
                         onChange={(e)=>setName(e.target.value)}
                 /><br/><br/>
 
@@ -69,8 +70,8 @@ function Signup(){
                 <br/><br/>
 
                 <div className='signup-btn'>
-                    <button onClick={()=>navigate('/login')}>Login</button>
-                    <button onClick={handleSubmit}>Submit</button>
+                    <Link to='/login'>Already hava an account</Link>
+                    <button onClick={handleSubmit}>Signup</button>
                 </div>
             </div>
         </div>

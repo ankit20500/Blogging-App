@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import './Login.css';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { userContext } from '../../stores/userStore';
 
 function Login(){
@@ -45,8 +45,9 @@ function Login(){
 
 
                 <div className='login-btn'>
-                    <button onClick={()=>navigate('/signup')}>Signup</button>
-                    <button onClick={handleSubmit}>Submit</button>
+                    <Link to='/signup'>New User</Link>
+                    {/* <button onClick={()=>navigate('/signup')}>Signup</button> */}
+                    <button onClick={handleSubmit}>Login</button>
                 </div>
             </div>
         </div>

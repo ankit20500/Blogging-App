@@ -33,7 +33,7 @@
 }
 
 .login-user-all-posts-box{
-    height: 17vmax;
+    height: 19vmax;
     width: 17vmax;
     border: 0.5px solid grey;
     padding: 1vmax;
@@ -84,4 +84,18 @@
     color: #282828;
     font-weight: 500;
     cursor: pointer;
+}
+
+.login-user-all-posts-box-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.login-user-all-posts-box-btn button{
+    padding: 0.5vmax;
+    background-color: #dedede;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
 }

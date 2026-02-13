@@ -1,33 +1,44 @@
 import { Link, useParams } from 'react-router-dom';
 import './PostDetails.css';
 import ProductReview from './PostReview';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { postContext } from '../../stores/postStore';
 import { userContext } from '../../stores/userStore';
 
 function ProductDetails(){
-    const {id}=useParams();
-    const {post}=useContext(postContext);
-    const {author,fetchAuthor}=useContext(userContext);
-    
-    const [postDetails,setPostDetails]=useState(null);
 
-    useEffect(()=>{
-        const fetchData=async()=>{
-            const response=post.find(item=>item._id===id);
-            setPostDetails(response);
-            
-            await fetchAuthor(response?.author);
-        }
+    const { id } = useParams();
+
+    const { getPostDetails, postDetails } = useContext(postContext);
+    const { author, fetchAuthor } = useContext(userContext);
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+
+            await getPostDetails(id);  // 🔥 fetch from backend
+
+        };
+
         fetchData();
-    },[post])
 
+    }, [id]);
+
+    // 🔥 fetch author after postDetails loads
+    useEffect(() => {
+
+        if(postDetails?.author){
+            fetchAuthor(postDetails.author);
+        }
+
+    }, [postDetails]);
 
     return(
         <div className='product-page'>
-            {postDetails && 
+
+            {postDetails &&
                 <div className='product'>
-                    <img src={postDetails.image}/>
+                    <img src={postDetails.image} alt="post"/>
 
                     <div className='product-details'>
                         <p className='product-details-heading'>Details</p>
@@ -38,7 +49,6 @@ function ProductDetails(){
                         </p>
 
                         <p>
-                            
                             <span className='product-details-user'>Posted By:</span> &nbsp;
                             <Link to='/user/all-post'>
                                 <span className='product-details-author-name'>
@@ -48,7 +58,7 @@ function ProductDetails(){
                         </p>
 
                         <p>
-                            <span className='product-details-desc'>description:</span> &nbsp;
+                            <span className='product-details-desc'>Description:</span> &nbsp;
                             <span>{postDetails.description}</span>
                         </p>
 
@@ -58,6 +68,7 @@ function ProductDetails(){
             }
 
             <ProductReview/>
+
         </div>
     )
 }

@@ -1,7 +1,7 @@
-.upload-posts{
+.update-posts{
     padding: 2vmax;
     width: 30vmax;
-    height: 30vmax;
+    height: 35vmax;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,10 +10,7 @@
     margin: 0 auto;
     margin-top: 1vmax;
     gap: 1vmax;
-    background-image: url('./login img.jpg');
-    background-position: top;
-    background-size: cover;
-    background-repeat: no-repeat;
+
 }
 
 .post-image{
@@ -44,7 +41,8 @@ input[type="file"]::file-selector-button {
     color: #2c2c2c;
 }
 
-.upload-posts textarea{
+.update-posts textarea{
+    height: 4vmax;
     outline: none;
     border-radius: 5px;
     padding: 1vmax;
@@ -52,7 +50,7 @@ input[type="file"]::file-selector-button {
     font-size: 14px;
 }
 
-.upload-posts button{
+.update-posts button{
     width: 40%;
     padding: 0.5rem;
     color: #292929;

@@ -13,6 +13,8 @@ import UploadPosts from './components/Upload-Posts/UploadPosts';
 import { PostContextProvider } from './stores/postStore';
 import ChangePassword from './components/ChangePassword/ChangePassword';
 import UserAllPosts from './components/Specific-User-posts/UserAllPosts';
+import UpdatePost from './components/UpdatePost/UpdatePost';
+import HomeCart from './components/Home/HomeCart';
 
 function App(){
   return(
@@ -24,6 +26,7 @@ function App(){
       <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route path='/home' element={<HomeCart/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/profile' element={<Profile/>}/>
@@ -32,6 +35,7 @@ function App(){
         <Route path='/upload-posts' element={<UploadPosts/>}/>
         <Route path='/change-password' element={<ChangePassword/>}/>
         <Route path='/user/all-post' element={<UserAllPosts/>}/>
+        <Route path='/update-post/:id' element={<UpdatePost/>}/>
       </Routes>
       <Footer/>
       </UserContextProvider>

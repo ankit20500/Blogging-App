@@ -24,7 +24,7 @@ function UploadPosts(){
         data.append("location",location);
         data.append("description",description);
         await createPost(data);
-        navigate("/");
+        navigate("/admin/all-posts");
     }
 
     return(

@@ -1,5 +1,5 @@
 const cloudinary = require("../config/Cloudinary");
-const { createPostService, getAllPostsService, getAllUserPostService, getPostDetailsService } = require("../services/postsService");
+const { createPostService, getAllPostsService, getAllUserPostService, getPostDetailsService, deletePostService } = require("../services/postsService");
 
 // create a post by user
 async function createPostController(req,res){
@@ -20,7 +20,9 @@ async function createPostController(req,res){
         });
 
         const image=uploadResult.secure_url;
-        const postDetail={image,author,location,description}
+        const publicImgId=uploadResult.public_id;
+        
+        const postDetail={image,author,location,description,publicImgId}
         
         // create the post
         const response=await createPostService(postDetail);
@@ -97,4 +99,82 @@ async function getPostDetailsController(req,res){
     }
 }
 
-module.exports={createPostController,getAllPostsController,getAllUserPostController, getPostDetailsController};
+// delete the post which user wants
+async function deletePostController(req,res){
+    try {
+        
+        const id=req.params.id;
+        
+        // first find that post
+        const postId=await getPostDetailsService(id);
+
+        // delete the post from databse
+        await deletePostService(id);
+
+        // now delete the image from the cloudinary
+        await cloudinary.uploader.destroy(postId.publicImgId);
+        
+        res.status(200).json({
+            status:true,
+            message:"successfully delete the post"
+        });
+    } catch (error) {
+        res.status(400).json({
+            status:false,
+            message:"issues comes while deteting the post",
+            data:error.message
+        });
+    }
+}
+
+// edit the post of logged in user
+async function editPostController(req,res){
+    try {
+        const id=req.params.id;
+        const imageFile=req.file;
+        const {location,description}=req.body;
+        
+        // find the post
+        const post=await getPostDetailsService(id);
+        
+        // if image file is comes then delete the previous image from cloudinary and upload the new one
+        let newImgDet;
+        if(imageFile){
+            await cloudinary.uploader.destroy(post.publicImgId);
+
+            // now upload the new one
+            newImgDet=await new Promise((resolve,reject)=>{
+                const stream=cloudinary.uploader.upload_stream({folder:'posts'},
+                    (error,result)=>{
+                        if(error)reject(error);
+                        else resolve(result);
+                    }
+                );
+                stream.end(imageFile.buffer);
+            });
+            // now update all the details of the post and save it
+            post.image=newImgDet.secure_url;
+            post.publicImgId=newImgDet.public_id;
+        }
+
+        // now update the remaining details
+        post.location=location;
+        post.description=description;
+        post.save();
+
+        res.status(200).json({
+            status:true,
+            message:"successfully edit the post",
+            data:post
+        });
+
+    } catch (error) {
+        res.status(400).json({
+            status:false,
+            message:"issues comes while updating the post",
+            error:error.message
+        });
+    }
+}
+
+module.exports={createPostController,getAllPostsController,getAllUserPostController, getPostDetailsController,deletePostController,editPostController};

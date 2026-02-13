@@ -12,6 +12,14 @@ function Profile(){
 
     if(!user) return navigate('/login');
 
+    // delete profile
+    function handleDelete(){
+        try {
+            console.log("delete button clicked");
+        } catch (error) {
+            console.log("error comes: ",error.message);
+        }
+    }
 
     return(
         <div className='profile'>
@@ -20,6 +28,7 @@ function Profile(){
                 <p onClick={()=>navigate('/admin/all-posts')}>Show All Post</p>
                 <p onClick={()=>navigate('/upload-posts')}>Upload Post</p>
                 <p onClick={()=>navigate('/change-password')}>Change Password</p>
+                <p onClick={handleDelete}>Delete Account</p>
                 <p onClick={()=>{logoutUser(),navigate('/')}}>Logout</p>
             </div>
 
