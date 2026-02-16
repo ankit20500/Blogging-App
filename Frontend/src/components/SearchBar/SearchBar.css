@@ -8,3 +8,33 @@
     outline: none;
     text-align: center;
 }
+
+
+/* css for searched result */
+.search-result{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0px 0px;
+    margin-top: 2vmax;
+}
+
+.search-result-box{
+    height: 15vmax;
+    width: 17vmax;
+    border: 0.5px solid #c2c2c2;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.search-result img{
+    height: 9rem;
+    width: 100%;
+}
+
+.search-result p{
+    font-size: 14px;
+    margin: 0px 0px;
+    text-align: center;
+}

@@ -9,6 +9,7 @@ export const PostContextProvider=({children})=>{
     const [post,setPost]=useState([]);
     const [postDetails,setPostDetails]=useState(null);
     const [userPosts,setUserPosts] = useState([]);
+    const [searchResult,setSearchResult]=useState([]);
     
     
     // function for creating the post
@@ -86,9 +87,24 @@ export const PostContextProvider=({children})=>{
         }
     }
 
+    // fetch the searching result
+    async function fetchSearchResult(query){
+        try {
+            const response = await axios.get(
+                `http://localhost:3000/api/v1/post/search?q=${query}`
+            );
+            if(response.data.status){
+                setSearchResult(response.data.data);
+            }
+            
+            return;
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
+    }
 
     return(
-        <postContext.Provider value={{fetchAllPosts,post,setPost,fetchAllUserPosts,createPost,getPostDetails,postDetails,setPostDetails,deleteUserPost,updatePost,userPosts,setUserPosts}}>
+        <postContext.Provider value={{fetchAllPosts,post,setPost,fetchAllUserPosts,createPost,getPostDetails,postDetails,setPostDetails,deleteUserPost,updatePost,userPosts,setUserPosts,fetchSearchResult,searchResult}}>
             {children}
         </postContext.Provider>
     )

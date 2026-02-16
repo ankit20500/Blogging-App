@@ -6,6 +6,7 @@ const cors=require('cors');
 const cookieParser=require('cookie-parser');
 const { userRouter } = require('./routers/userRouter');
 const { postRouter } = require('./routers/postsRouter');
+const { reviewRouter } = require('./routers/reviewRouter');
 
 const port=process.env.PORT || 5000;
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 // all the routers
 app.use('/api/v1/user',userRouter);
 app.use('/api/v1/post', postRouter);
+app.use('/api/v1/review',reviewRouter);
 
 
 connectDB()

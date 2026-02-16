@@ -1,5 +1,5 @@
 const cloudinary = require("../config/Cloudinary");
-const { createPostService, getAllPostsService, getAllUserPostService, getPostDetailsService, deletePostService } = require("../services/postsService");
+const { createPostService, getAllPostsService, getAllUserPostService, getPostDetailsService, deletePostService, searchPostsService } = require("../services/postsService");
 
 // create a post by user
 async function createPostController(req,res){
@@ -18,11 +18,11 @@ async function createPostController(req,res){
             );
             stream.end(imageFile.buffer);
         });
-
+        console.log("cloudinary: ",uploadResult);
         const image=uploadResult.secure_url;
-        const publicImgId=uploadResult.public_id;
+        const imagePublicId=uploadResult.public_id;
         
-        const postDetail={image,author,location,description,publicImgId}
+        const postDetail={image,author,location,description,imagePublicId}
         
         // create the post
         const response=await createPostService(postDetail);
@@ -112,7 +112,7 @@ async function deletePostController(req,res){
         await deletePostService(id);
 
         // now delete the image from the cloudinary
-        await cloudinary.uploader.destroy(postId.publicImgId);
+        await cloudinary.uploader.destroy(postId.imagePublicId);
         
         res.status(200).json({
             status:true,
@@ -140,7 +140,7 @@ async function editPostController(req,res){
         // if image file is comes then delete the previous image from cloudinary and upload the new one
         let newImgDet;
         if(imageFile){
-            await cloudinary.uploader.destroy(post.publicImgId);
+            await cloudinary.uploader.destroy(post.imagePublicId);
 
             // now upload the new one
             newImgDet=await new Promise((resolve,reject)=>{
@@ -154,7 +154,7 @@ async function editPostController(req,res){
             });
             // now update all the details of the post and save it
             post.image=newImgDet.secure_url;
-            post.publicImgId=newImgDet.public_id;
+            post.imagePublicId=newImgDet.public_id;
         }
 
         // now update the remaining details
@@ -177,4 +177,26 @@ async function editPostController(req,res){
     }
 }
 
-module.exports={createPostController,getAllPostsController,getAllUserPostController, getPostDetailsController,deletePostController,editPostController};
+// searching feature 
+async function searchPostsController(req, res) {
+    try {
+
+        const { q } = req.query;
+
+        const posts = await searchPostsService(q);
+        
+        return res.status(200).json({
+            status: true,
+            data: posts
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            status: false,
+            message: "Error while searching posts",
+            error:error.message
+        });
+    }
+}
+
+module.exports={createPostController,getAllPostsController,getAllUserPostController, getPostDetailsController,deletePostController,editPostController,searchPostsController};

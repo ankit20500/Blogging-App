@@ -1,29 +1,40 @@
-const mongoose=require('mongoose');
+const mongoose=require("mongoose");
 
-const PostSchema=new mongoose.Schema({
+const postSchema=new mongoose.Schema({
+
     image:{
-        type:String,
-        required:[true,'image is required']
+        type: String,
+        required: true
     },
-    publicImgId:{
-        type:String,
-        required:[true,'public id of image is required']
+
+    imagePublicId:{
+        type: String,
+        required: true
     },
+
     location:{
-        type:String,
-        required:[true,'location is required']
+        type: String,
+        required: true
     },
+
+    description:{
+        type: String,
+        required: true
+    },
+
     author:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User",
-        required:[true,'user is required']
+        required:true
     },
-    description:{
-        type:String,
-        required:[true,'description is required']
-    }
-},{timestamps:true})
 
-const Posts=mongoose.model('posts',PostSchema);
+    reviews:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Review"
+    }]
+
+},{timestamps:true});
+
+const Posts=mongoose.model("Posts", postSchema);
 
 module.exports={Posts};

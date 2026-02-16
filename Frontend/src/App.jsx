@@ -16,6 +16,10 @@ import UserAllPosts from './components/Specific-User-posts/UserAllPosts';
 import UpdatePost from './components/UpdatePost/UpdatePost';
 import HomeCart from './components/Home/HomeCart';
   import { ToastContainer} from 'react-toastify';
+import { ReviewContextProvider } from './stores/reviewStore';
+import SearchBar from './components/SearchBar/SearchBar';
+import SearchResult from './components/SearchBar/searchResult';
+
 
 function App(){
   return(
@@ -24,6 +28,7 @@ function App(){
       <BrowserRouter>
       <PostContextProvider>
       <UserContextProvider>
+      <ReviewContextProvider>
       <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -37,8 +42,11 @@ function App(){
         <Route path='/change-password' element={<ChangePassword/>}/>
         <Route path='/user/all-post' element={<UserAllPosts/>}/>
         <Route path='/update-post/:id' element={<UpdatePost/>}/>
+        <Route path='/search' element={<SearchBar/>}/>
+        <Route path='/search-result' element={<SearchResult/>}/>
       </Routes>
       <Footer/>
+      </ReviewContextProvider>
       </UserContextProvider>
       </PostContextProvider>
       <ToastContainer

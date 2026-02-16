@@ -11,7 +11,7 @@ const reviewSchema=new mongoose.Schema({
             ref:"User",
             required:[true,'please login for review on this post']
         },
-    comment:{
+    comments:{
         type:String,
         required:[true,"please write something"]
     },
@@ -23,4 +23,6 @@ const reviewSchema=new mongoose.Schema({
     }
 },{timestamps:true});
 
-export const Reviews=mongoose.model('reviews',reviewSchema);
+const Reviews = mongoose.model('Review', reviewSchema);
+
+module.exports={Reviews};

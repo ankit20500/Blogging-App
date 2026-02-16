@@ -34,5 +34,16 @@ export const LoginSchema=yup.object({
 })
 
 
-
+// validation for review
+export const ReviewSchema=yup.object({
+    ratings:yup.number('type is mismatching')
+                .required('ratings is required')
+                .min(1,'minimum ratings is 1')
+                .max(5,'maximum ratings is 5'),
+    
+    comments:yup.string('type is mismatching')
+                .required('comments is required')
+                .min(50,'minimum comment size is 50')
+                .max(200,'comment is not more than 200')
+});
 
